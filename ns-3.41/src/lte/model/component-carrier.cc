@@ -119,21 +119,22 @@ void
 ComponentCarrier::SetUlBandwidth(uint16_t bw)
 {
     NS_LOG_FUNCTION(this << bw);
-    switch (bw)
-    {
-    case 6:
-    case 15:
-    case 25:
-    case 50:
-    case 75:
-    case 100:
-        m_ulBandwidth = bw;
-        break;
+    m_ulBandwidth = bw;
+    // switch (bw)
+    // {
+    // case 6:
+    // case 15:
+    // case 25:
+    // case 50:
+    // case 75:
+    // case 100:
+    //     m_ulBandwidth = bw;
+    //     break;
 
-    default:
-        NS_FATAL_ERROR("Invalid bandwidth value " << bw);
-        break;
-    }
+    // default:
+    //     NS_FATAL_ERROR("Invalid bandwidth value " << bw);
+    //     break;
+    // }
 }
 
 uint16_t
@@ -146,21 +147,22 @@ void
 ComponentCarrier::SetDlBandwidth(uint16_t bw)
 {
     NS_LOG_FUNCTION(this << bw);
-    switch (bw)
-    {
-    case 6:
-    case 15:
-    case 25:
-    case 50:
-    case 75:
-    case 100:
-        m_dlBandwidth = bw;
-        break;
+    m_dlBandwidth = bw;
+    // switch (bw)
+    // {
+    // case 6:
+    // case 15:
+    // case 25:
+    // case 50:
+    // case 75:
+    // case 100:
+    //     m_dlBandwidth = bw;
+    //     break;
 
-    default:
-        NS_FATAL_ERROR("Invalid bandwidth value " << bw);
-        break;
-    }
+    // default:
+    //     NS_FATAL_ERROR("Invalid bandwidth value " << bw);
+    //     break;
+    // }
 }
 
 uint32_t
