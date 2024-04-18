@@ -119,7 +119,11 @@ void
 ComponentCarrier::SetUlBandwidth(uint16_t bw)
 {
     NS_LOG_FUNCTION(this << bw);
-    m_ulBandwidth = bw;
+    if (bw>=1 && bw<=100){
+        m_ulBandwidth = bw;
+    }else{
+        NS_FATAL_ERROR("Invalid bandwidth value " << bw);
+    }
     // switch (bw)
     // {
     // case 6:
@@ -147,7 +151,11 @@ void
 ComponentCarrier::SetDlBandwidth(uint16_t bw)
 {
     NS_LOG_FUNCTION(this << bw);
-    m_dlBandwidth = bw;
+    if (bw>=1 && bw<=100){
+        m_dlBandwidth = bw;
+    }else{
+        NS_FATAL_ERROR("Invalid bandwidth value " << bw);
+    }
     // switch (bw)
     // {
     // case 6:

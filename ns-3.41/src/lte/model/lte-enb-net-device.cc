@@ -258,7 +258,11 @@ void
 LteEnbNetDevice::SetUlBandwidth(uint16_t bw)
 {
     NS_LOG_FUNCTION(this << bw);
-    m_ulBandwidth = bw;
+    if (bw>=1 && bw<=100){
+        m_ulBandwidth = bw;
+    }else{
+        NS_FATAL_ERROR("invalid bandwidth value " << bw);
+    }
     // switch (bw)
     // {
     // case 6:
@@ -286,7 +290,11 @@ void
 LteEnbNetDevice::SetDlBandwidth(uint16_t bw)
 {
     NS_LOG_FUNCTION(this << uint16_t(bw));
-    m_dlBandwidth = bw;
+    if (bw>=1 && bw<=100){
+        m_dlBandwidth = bw;
+    }else{
+        NS_FATAL_ERROR("invalid bandwidth value " << bw);
+    }
     // switch (bw)
     // {
     // case 6:
