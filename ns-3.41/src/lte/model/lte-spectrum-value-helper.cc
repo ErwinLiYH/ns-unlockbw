@@ -191,21 +191,37 @@ double
 LteSpectrumValueHelper::GetChannelBandwidth(uint16_t transmissionBandwidth)
 {
     NS_LOG_FUNCTION(transmissionBandwidth);
-    switch (transmissionBandwidth)
-    {
-    case 6:
-        return 1.4e6;
-    case 15:
-        return 3.0e6;
-    case 25:
-        return 5.0e6;
-    case 50:
-        return 10.0e6;
-    case 75:
-        return 15.0e6;
-    case 100:
-        return 20.0e6;
-    default:
+    // switch (transmissionBandwidth)
+    // {
+    // case 6:
+    //     return 1.4e6;
+    // case 15:
+    //     return 3.0e6;
+    // case 25:
+    //     return 5.0e6;
+    // case 50:
+    //     return 10.0e6;
+    // case 75:
+    //     return 15.0e6;
+    // case 100:
+    //     return 20.0e6;
+    // default:
+    //     NS_FATAL_ERROR("invalid bandwidth value " << transmissionBandwidth);
+    // }
+    double bandwidth = 0.0;
+    const double a = (3e6 - 1.4e6) / (15 - 6); // Slope for RBs from 1 to 15
+    const double b = 1.4e6 - a * 6;            // Intercept for RBs from 1 to 15
+    const double a2 = 200000;                  // Slope for RBs from 15 to 100
+    if (transmissionBandwidth >= 1 && transmissionBandwidth < 15) {
+        // Calculate bandwidth for RBs from 1 to 15
+        bandwidth = a * transmissionBandwidth + b;
+        return bandwidth;
+    } else if (transmissionBandwidth >= 15 && transmissionBandwidth <= 100) {
+        // Calculate bandwidth for RBs from 15 to 100
+        bandwidth = a2 * transmissionBandwidth;
+        return bandwidth;
+    } else {
+        // RB value is out of the expected range
         NS_FATAL_ERROR("invalid bandwidth value " << transmissionBandwidth);
     }
 }
