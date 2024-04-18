@@ -1,3 +1,27 @@
+## Changes from ns-3.41
+
+This repository contains a modified version of ns-3.41, specifically altering the LTE eNodeB to eliminate the restriction on Resource Block (RB) numbers.
+
+In the original ns-3.41, the bandwidth could only be configured to specific values as per LTE standards, which include:
+
+- 6 RBs for 1.4 MHz
+- 15 RBs for 3 MHz
+- 25 RBs for 5 MHz
+- 50 RBs for 10 MHz
+- 75 RBs for 15 MHz
+- 100 RBs for 20 MHz
+
+In this modified version, the eNodeB's UlBandwidth and DlBandwidth can be set to any integer from 1 to 100. For the range of 1 to 15, the bandwidth settings are determined by linear interpolation between the points (6RB, 1.4MHz) and (15RB, 3MHz). For the range of 15 to 100, the settings are adjusted using linear interpolation between the points (15RB, 3MHz) and (100RB, 20MHz).
+
+Changed file:
+
+- ns-3.41/src/lte/model/component-carrier.cc
+- ns-3.41/src/lte/model/lte-enb-net-device.cc
+- ns-3.41/src/lte/model/lte-ffr-algorithm.cc
+- ns-3.41/src/lte/model/lte-spectrum-value-helper.cc
+
+## Original README.md from ns-3
+
 This is **_ns-3-allinone_**, a repository with some scripts to download
 and build the core components around the 
 [ns-3 network simulator](https://www.nsnam.org).
